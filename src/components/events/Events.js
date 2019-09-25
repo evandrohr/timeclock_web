@@ -3,6 +3,7 @@
   import Col from 'react-bootstrap/Col';
   import List from './list/List';
   import { getToken, getCurrentUserId, getCurrentUserName } from "../../services/auth";
+  import CreateEvent from './create_events/CreateEvents';
 
    
    class Events extends Component {
@@ -38,6 +39,7 @@
          <Row>
            <Col xs={{ span: 8, offset: 2 }} className="events_list">
              <p className="title">Events</p>
+             <CreateEvent loadEvents={this.loadEvents}/>
              <List loadEvents={this.loadEvents} events={this.state.events}/>
            </Col>
          </Row>

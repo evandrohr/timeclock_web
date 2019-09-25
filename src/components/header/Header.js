@@ -11,6 +11,7 @@ import React, { Component } from 'react';
                <FontAwesomeIcon icon="check-circle" size="lg"/> Time Clock
              </Navbar.Brand>
            </Navbar>
+           <br></br>
          </div>
        );
      }

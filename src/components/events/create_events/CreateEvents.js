@@ -2,14 +2,15 @@ import React, { useState } from "react";
    import Modal from 'react-bootstrap/Modal';
    import Button from 'react-bootstrap/Button';
    import Form from 'react-bootstrap/Form';
-   import { getToken } from "../../../services/auth";
+   import { getToken,getCurrentUserId, getCurrentUserName } from "../../../services/auth";
    
    function CreateEvent(props) {
-     const [title, setTitle] = useState('');
+     const [type_evt, setTypeEvt] = useState('clock_in');
      const [show, setShow] = useState('');
-   
+
      const handleSubmit = (async () => {
-       await fetch(`http://localhost:3001/api/v1/users/`,
+
+       await fetch(`http://localhost:3000/api/v1/users/${getCurrentUserId()}/clock_events/`,
          {
            method: 'POST',
            headers: {
@@ -18,25 +19,32 @@ import React, { useState } from "react";
              'Authorization': `Bearer ${getToken()}`
            },
            body: JSON.stringify({
-             task: { title: title, done: false} 
+             clock_event: { event_time: new Date(), type_evt: type_evt  , user_id: getCurrentUserId()} 
            })
          }
        )
        setShow(false)
-       setTitle('')
-       props.loadTasks();
+       setTypeEvt('0')
+       props.loadEvents();
      });
    
      return (
        <div>
-         <Button onClick={e => setShow(true)} variant="dark" className="float-right create_task_btn">+ Tasks</Button>
+         <Button onClick={e => setShow(true)} variant="dark" className="float-right create_event_btn">New Clock Event</Button>
    
          <Modal show={show || false} onHide={e => setShow(false)}>
            <Modal.Header closeButton>
-             <Modal.Title>New Task</Modal.Title>
+             <Modal.Title>New Clock Event</Modal.Title>
            </Modal.Header>
            <Modal.Body>
-             <Form.Control type="email" placeholder="Enter with your task..." value={title || ''} onChange={e => setTitle(e.target.value)} />
+           <Form.Group controlId="exampleForm.ControlSelect1">
+            <Form.Label>Event Type</Form.Label>
+              <Form.Control as="select" onChange={e => setTypeEvt(e.target.value)}>
+                <option value="clock_in">Clock In</option>
+                <option value="clock_out">Clock Out</option>
+              </Form.Control>
+            </Form.Group>
+             {/* <Form.Control type="email" placeholder="0 ou 1" value={type_evt || ''} onChange={e => setTypeEvt(e.target.value)} /> */}
            </Modal.Body>
            <Modal.Footer>
              <Button variant="secondary" onClick={e => setShow(false)}>
@@ -53,4 +61,4 @@ import React, { useState } from "react";
      );
    }
    
-   export default CreateTask;
+   export default CreateEvent;

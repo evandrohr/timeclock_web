@@ -49,11 +49,10 @@ class Dashboard extends Component {
     return(
     <div>
         <Header/>
-        <button onClick= {this.handleSignOut} >Logout</button>
+        <button onClick= {this.handleSignOut} className="float-right create_event_btn" >Logout</button>
         
       <Container>
-        <span>{getCurrentUserName()}</span>
-        <button >New Clock Event</button>
+        <h1>{getCurrentUserName()}</h1>
       </Container>
       <Container>
           <Events/>
