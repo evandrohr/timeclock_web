@@ -1,0 +1,41 @@
+$yellow: #F5DD16;
+   $dark-grey: #7C7C7C;
+   $light-grey: #BEBEBE;
+   $red: #EE4525;
+   
+   .navbar{
+     background-color: $dark-grey;
+     .navbar-brand{
+       color: $yellow !important;
+     }
+   }
+
+   .events_list{
+    margin-top: 40px;
+    .title{
+      font-size: 22px;
+      color: $dark-grey;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+   
+    .card{
+      background-color: $dark-grey;
+      table{
+        tbody > tr:nth-child(1) > td{
+          border-top: 0;
+        }
+        color: white;
+        font-weight: 500;
+        margin-bottom: 5px;
+   
+        .edit{
+          color: $yellow;
+          font-size: 15px;
+        }
+        .delete{
+          color: white;
+        }
+      }
+    }
+  }
