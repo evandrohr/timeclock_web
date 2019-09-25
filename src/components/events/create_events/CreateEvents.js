@@ -2,15 +2,15 @@ import React, { useState } from "react";
    import Modal from 'react-bootstrap/Modal';
    import Button from 'react-bootstrap/Button';
    import Form from 'react-bootstrap/Form';
-   import { getToken,getCurrentUserId, getCurrentUserName } from "../../../services/auth";
+   import { getToken,getCurrentUserId } from "../../../services/auth";
    
    function CreateEvent(props) {
      const [type_evt, setTypeEvt] = useState('clock_in');
      const [show, setShow] = useState('');
 
-     const handleSubmit = (async () => {
-
-       await fetch(`http://localhost:3000/api/v1/users/${getCurrentUserId()}/clock_events/`,
+     const handleSubmit = (async e => {
+      e.preventDefault();
+       await fetch(`http://18.222.159.99:80/api/v1/users/${getCurrentUserId()}/clock_events/`,
          {
            method: 'POST',
            headers: {
@@ -30,7 +30,7 @@ import React, { useState } from "react";
    
      return (
        <div>
-         <Button onClick={e => setShow(true)} variant="dark" className="float-right create_event_btn">New Clock Event</Button>
+         <Button onClick={e => setShow(true)} variant="dark" className="float-up create_event_btn">New Clock Event</Button>
    
          <Modal show={show || false} onHide={e => setShow(false)}>
            <Modal.Header closeButton>

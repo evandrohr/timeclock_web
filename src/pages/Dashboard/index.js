@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import Container from 'react-bootstrap/Container'
 import '../../App.scss';
 import Header from '../../components/header/Header';
 import Events from '../../components/events/Events';
 
-import Logo from "../../assets/logo.svg";
-import api from "../../services/api";
-import { logout, getCurrentUserId, getCurrentUserName } from "../../services/auth";
+import { logout, getCurrentUserName } from "../../services/auth";
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCheckCircle, faTrashAlt, faEdit } from '@fortawesome/free-regular-svg-icons'
@@ -49,7 +47,7 @@ class Dashboard extends Component {
     return(
     <div>
         <Header/>
-        <button onClick= {this.handleSignOut} className="float-right create_event_btn" >Logout</button>
+        <button onClick= {this.handleSignOut} variant="dark" className="float-right create_event_btn" >Logout</button>
         
       <Container>
         <h1>{getCurrentUserName()}</h1>

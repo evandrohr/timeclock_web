@@ -2,7 +2,7 @@
   import Row from 'react-bootstrap/Row';
   import Col from 'react-bootstrap/Col';
   import List from './list/List';
-  import { getToken, getCurrentUserId, getCurrentUserName } from "../../services/auth";
+  import { getToken, getCurrentUserId } from "../../services/auth";
   import CreateEvent from './create_events/CreateEvents';
 
    
@@ -25,7 +25,7 @@
           'Authorization': `Bearer ${token}`
         }),
       };
-      let response = await fetch(`http://localhost:3000/api/v1/users/${getCurrentUserId()}/clock_events/`, requestInfo);
+      let response = await fetch(`http://18.222.159.99:80/api/v1/users/${getCurrentUserId()}/clock_events/`, requestInfo);
       const events = await response.json();
       this.setState({ events: events });
     }

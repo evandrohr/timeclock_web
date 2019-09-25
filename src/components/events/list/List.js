@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-   import Row from 'react-bootstrap/Row';
    import Card from 'react-bootstrap/Card';
    import Table from 'react-bootstrap/Table';
    import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,9 +16,13 @@ import React, { Component } from 'react';
         }),
       };
       if (window.confirm(`Are you sure you want to delete: "${event.event_time}"`)) {
-        await fetch(`http://localhost:3000/api/v1/users/${event.user_id}/clock_events/${event.id}`, requestInfo);
+        await fetch(`http://18.222.159.99:80/api/v1/users/${event.user_id}/clock_events/${event.id}`, requestInfo);
         this.props.loadEvents();
       }
+    }
+
+    async editEvent(event) {
+
     }
 
      render() {
@@ -34,7 +37,7 @@ import React, { Component } from 'react';
                      <td className="col-md-3">{Moment(event.event_time).format('MM/DD/YYYY hh:mm:ss')}</td>
                      <td className="col-md-3">{event.type_evt}</td>
                      <td>
-                       <a className="edit" href="#">
+                       <a className="edit" href="#" onClick={() => this.editEvent(event)}>
                          <FontAwesomeIcon icon="edit"/>
                        </a>
                      </td>
